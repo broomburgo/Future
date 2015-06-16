@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38DD4F9C1B306F75003BBCEE /* Future.h in Headers */ = {isa = PBXBuildFile; fileRef = 38DD4F9B1B306F75003BBCEE /* Future.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38DD4FA21B306F75003BBCEE /* Future.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4F961B306F75003BBCEE /* Future.framework */; };
 		38DD4FA91B306F75003BBCEE /* FutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD4FA81B306F75003BBCEE /* FutureTests.swift */; };
+		38DD4FB31B307314003BBCEE /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD4FB21B307314003BBCEE /* Future.swift */; };
+		38DD4FB51B307322003BBCEE /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD4FB41B307322003BBCEE /* Promise.swift */; };
+		38DD4FBA1B307358003BBCEE /* Box.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FB71B307358003BBCEE /* Box.framework */; };
+		38DD4FBB1B307358003BBCEE /* Elements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FB81B307358003BBCEE /* Elements.framework */; };
+		38DD4FBC1B307358003BBCEE /* Queue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FB91B307358003BBCEE /* Queue.framework */; };
+		38DD4FBE1B307416003BBCEE /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FBD1B307416003BBCEE /* Result.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,10 +30,15 @@
 /* Begin PBXFileReference section */
 		38DD4F961B306F75003BBCEE /* Future.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Future.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DD4F9A1B306F75003BBCEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38DD4F9B1B306F75003BBCEE /* Future.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Future.h; sourceTree = "<group>"; };
 		38DD4FA11B306F75003BBCEE /* FutureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DD4FA71B306F75003BBCEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DD4FA81B306F75003BBCEE /* FutureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureTests.swift; sourceTree = "<group>"; };
+		38DD4FB21B307314003BBCEE /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
+		38DD4FB41B307322003BBCEE /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		38DD4FB71B307358003BBCEE /* Box.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Box.framework; path = "../../../../Library/Developer/Xcode/DerivedData/libraries-bbugebbxwvwmdcftipdzethlotef/Build/Products/Debug-iphoneos/Box.framework"; sourceTree = "<group>"; };
+		38DD4FB81B307358003BBCEE /* Elements.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Elements.framework; path = "../../../../Library/Developer/Xcode/DerivedData/libraries-bbugebbxwvwmdcftipdzethlotef/Build/Products/Debug-iphoneos/Elements.framework"; sourceTree = "<group>"; };
+		38DD4FB91B307358003BBCEE /* Queue.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Queue.framework; path = "../../../../Library/Developer/Xcode/DerivedData/libraries-bbugebbxwvwmdcftipdzethlotef/Build/Products/Debug-iphoneos/Queue.framework"; sourceTree = "<group>"; };
+		38DD4FBD1B307416003BBCEE /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "../../../../Library/Developer/Xcode/DerivedData/libraries-bbugebbxwvwmdcftipdzethlotef/Build/Products/Debug-iphoneos/Result.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38DD4FBE1B307416003BBCEE /* Result.framework in Frameworks */,
+				38DD4FBA1B307358003BBCEE /* Box.framework in Frameworks */,
+				38DD4FBB1B307358003BBCEE /* Elements.framework in Frameworks */,
+				38DD4FBC1B307358003BBCEE /* Queue.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +69,7 @@
 			children = (
 				38DD4F981B306F75003BBCEE /* Future */,
 				38DD4FA51B306F75003BBCEE /* FutureTests */,
+				38DD4FB61B30733D003BBCEE /* Dependencies */,
 				38DD4F971B306F75003BBCEE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,7 +86,8 @@
 		38DD4F981B306F75003BBCEE /* Future */ = {
 			isa = PBXGroup;
 			children = (
-				38DD4F9B1B306F75003BBCEE /* Future.h */,
+				38DD4FB21B307314003BBCEE /* Future.swift */,
+				38DD4FB41B307322003BBCEE /* Promise.swift */,
 				38DD4F991B306F75003BBCEE /* Supporting Files */,
 			);
 			path = Future;
@@ -102,6 +118,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		38DD4FB61B30733D003BBCEE /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				38DD4FBD1B307416003BBCEE /* Result.framework */,
+				38DD4FB71B307358003BBCEE /* Box.framework */,
+				38DD4FB81B307358003BBCEE /* Elements.framework */,
+				38DD4FB91B307358003BBCEE /* Queue.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -109,7 +136,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38DD4F9C1B306F75003BBCEE /* Future.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +235,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38DD4FB31B307314003BBCEE /* Future.swift in Sources */,
+				38DD4FB51B307322003BBCEE /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,25 +351,36 @@
 		38DD4FAD1B306F75003BBCEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/libraries-bbugebbxwvwmdcftipdzethlotef/Build/Products/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = Future/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		38DD4FAE1B306F75003BBCEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/libraries-bbugebbxwvwmdcftipdzethlotef/Build/Products/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = Future/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
