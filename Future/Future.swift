@@ -12,8 +12,8 @@ import Elements
 ///MARK: - basic definitions
 final public class Future<T,E> {
     
-    ///  'result' is an exposed, non-mutable, computed property that refers to the invisible, internal var result_internal; this construct is necessary because 'result' should be able to mutate over time, but shouldn't be mutated by clients
-    var result_internal: Result<T,E>? = nil
+    ///  'result' is an exposed, non-mutable, computed property that refers to the invisible, private var result_internal; this construct is necessary because 'result' should be able to mutate over time, but shouldn't be mutated by clients
+    private var result_internal: Result<T,E>? = nil
     public var result: Result<T,E>? {
         return result_internal
     }
@@ -140,9 +140,9 @@ extension Future {
         onComplete { result in
             switch result {
             case .Success(let box):
-                newFuture.complete(success(change(box.value)))
+                newFuture.complete(Result.success(change(box.value)))
             case .Failure(let box):
-                newFuture.complete(failure(box.value))
+                newFuture.complete(Result.failure(box.value))
             }
         }
         return newFuture
@@ -155,7 +155,7 @@ extension Future {
             case .Success(let box):
                 change(box.value).onComplete { newFuture.complete($0) }
             case .Failure(let box):
-                newFuture.complete(failure(box.value))
+                newFuture.complete(Result.failure(box.value))
             }
         }
         return newFuture
@@ -168,18 +168,6 @@ extension Future {
             }
         }
     }
-}
-
-public func map <T,U,E> (future: Future<T,E>, change: T -> U) -> Future<U,E> {
-    return future.map(change)
-}
-
-public func flatMap <T,U,E> (future: Future<T,E>, change: T -> Future<U,E>) -> Future<U,E> {
-    return future.flatMap(change)
-}
-
-public func zip <T,U,E> (future: Future<T,E>, otherFuture: Future<U,E>) -> Future<(T,U),E> {
-    return future.zip(otherFuture)
 }
 
 ///MARK: - 'Applicative' and 'Monad' definitions
