@@ -23,7 +23,14 @@ public class Promise<T,E> {
     }
 }
 
-/// the func 'fulfilled' returns an already completed Future: useful for using functions that require Futures as input in situations in which the data is ready
+/// the func 'completed' returns an already completed Future: useful for using functions that require Futures as input in situations in which the data is ready
+public func completed <T,E> (result: Result<T,E>) -> Future<T,E> {
+    let promise = Promise<T,E>()
+    promise.complete(result)
+    return promise.future
+}
+
+/// the func 'fulfilled' already completed Future that contains a successful Result
 public func fulfilled <T,E> (value: T) -> Future<T,E> {
     let promise = Promise<T,E>()
     promise.complete(Result.success(value))
