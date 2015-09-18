@@ -5,7 +5,6 @@
 
 import Foundation
 import Result
-import Box
 import Queue
 import Elements
 
@@ -96,8 +95,8 @@ final public class Future<T,E> {
     public func onSuccess(callback: SuccessCallback) -> Future {
         onComplete { result in
             switch result {
-            case .Success(let box):
-                callback(box.value)
+            case .Success(let value):
+                callback(value)
             default:
                 break
             }
@@ -107,8 +106,8 @@ final public class Future<T,E> {
     public func onFailure(callback: FailureCallback) -> Future {
         onComplete { result in
             switch result {
-            case .Failure(let box):
-                callback(box.value)
+            case .Failure(let value):
+                callback(value)
             default:
                 break
             }
@@ -139,10 +138,10 @@ extension Future {
         let newFuture = Future<U,E>()
         onComplete { result in
             switch result {
-            case .Success(let box):
-                newFuture.complete(Result.success(change(box.value)))
-            case .Failure(let box):
-                newFuture.complete(Result.failure(box.value))
+            case .Success(let value):
+                newFuture.complete(Result.success(change(value)))
+            case .Failure(let error):
+                newFuture.complete(Result.failure(error))
             }
         }
         return newFuture
@@ -152,10 +151,10 @@ extension Future {
         let newFuture = Future<U,E>()
         onComplete { result in
             switch result {
-            case .Success(let box):
-                change(box.value).onComplete { newFuture.complete($0) }
-            case .Failure(let box):
-                newFuture.complete(Result.failure(box.value))
+            case .Success(let value):
+                change(value).onComplete { newFuture.complete($0) }
+            case .Failure(let error):
+                newFuture.complete(Result.failure(error))
             }
         }
         return newFuture
@@ -182,10 +181,10 @@ public func <*> <A,B,E> (lhs: Future<A->B,E>, rhs: Future<A,E>) -> Future<B,E> {
     }
 }
 
-public func <§> <A,B,E> (lhs: A->B, rhs: Future<A,E>) -> Future<B,E> {
+public func <^> <A,B,E> (lhs: A->B, rhs: Future<A,E>) -> Future<B,E> {
     return pure(lhs) <*> rhs
 }
 
-public func >>> <T,U,E> (lhs: Future<T,E>, rhs: T->Future<U,E>) -> Future<U,E> {
+public func >>- <T,U,E> (lhs: Future<T,E>, rhs: T->Future<U,E>) -> Future<U,E> {
     return lhs.flatMap(rhs)
 }

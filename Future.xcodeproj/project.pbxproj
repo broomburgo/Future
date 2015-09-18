@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38A52AB31BAC533A006B7061 /* Elements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FB81B307358003BBCEE /* Elements.framework */; };
+		38A52AB41BAC533A006B7061 /* Queue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FB91B307358003BBCEE /* Queue.framework */; };
+		38A52AB51BAC533A006B7061 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FBD1B307416003BBCEE /* Result.framework */; };
 		38DD4FA21B306F75003BBCEE /* Future.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4F961B306F75003BBCEE /* Future.framework */; };
 		38DD4FA91B306F75003BBCEE /* FutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD4FA81B306F75003BBCEE /* FutureTests.swift */; };
 		38DD4FB31B307314003BBCEE /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD4FB21B307314003BBCEE /* Future.swift */; };
 		38DD4FB51B307322003BBCEE /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD4FB41B307322003BBCEE /* Promise.swift */; };
-		38DD4FBA1B307358003BBCEE /* Box.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FB71B307358003BBCEE /* Box.framework */; };
-		38DD4FBB1B307358003BBCEE /* Elements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FB81B307358003BBCEE /* Elements.framework */; };
-		38DD4FBC1B307358003BBCEE /* Queue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FB91B307358003BBCEE /* Queue.framework */; };
-		38DD4FBE1B307416003BBCEE /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD4FBD1B307416003BBCEE /* Result.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,10 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38DD4FBE1B307416003BBCEE /* Result.framework in Frameworks */,
-				38DD4FBA1B307358003BBCEE /* Box.framework in Frameworks */,
-				38DD4FBB1B307358003BBCEE /* Elements.framework in Frameworks */,
-				38DD4FBC1B307358003BBCEE /* Queue.framework in Frameworks */,
+				38A52AB31BAC533A006B7061 /* Elements.framework in Frameworks */,
+				38A52AB41BAC533A006B7061 /* Queue.framework in Frameworks */,
+				38A52AB51BAC533A006B7061 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +182,9 @@
 		38DD4F8D1B306F75003BBCEE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Elvi;
 				TargetAttributes = {
 					38DD4F951B306F75003BBCEE = {
@@ -281,6 +281,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -363,6 +364,7 @@
 				INFOPLIST_FILE = Future/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.elvi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -384,6 +386,7 @@
 				INFOPLIST_FILE = Future/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.elvi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -392,16 +395,14 @@
 		38DD4FB01B306F75003BBCEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = FutureTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.elvi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -409,12 +410,10 @@
 		38DD4FB11B306F75003BBCEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FutureTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.elvi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -438,6 +437,7 @@
 				38DD4FAE1B306F75003BBCEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38DD4FAF1B306F75003BBCEE /* Build configuration list for PBXNativeTarget "FutureTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +446,7 @@
 				38DD4FB11B306F75003BBCEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
