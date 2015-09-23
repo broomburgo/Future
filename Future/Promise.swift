@@ -2,7 +2,7 @@
 /// A Promise can be considered the 'writable' part of a Future
 
 import Foundation
-import Result
+import Swiftz
 
 public class Promise<T,E> {
     public let future: Future<T,E>
@@ -11,7 +11,7 @@ public class Promise<T,E> {
         self.future = Future<T,E>()
     }
     
-    public func complete(result: Result<T,E>) {
+    public func complete(result: Either<E,T>) {
         future.complete(result)
     }
     
@@ -24,7 +24,7 @@ public class Promise<T,E> {
 }
 
 /// the func 'completed' returns an already completed Future: useful for using functions that require Futures as input in situations in which the data is ready
-public func completed <T,E> (result: Result<T,E>) -> Future<T,E> {
+public func completed <T,E> (result: Either<E,T>) -> Future<T,E> {
     let promise = Promise<T,E>()
     promise.complete(result)
     return promise.future
@@ -33,13 +33,13 @@ public func completed <T,E> (result: Result<T,E>) -> Future<T,E> {
 /// the func 'fulfilled' already completed Future that contains a successful Result
 public func fulfilled <T,E> (value: T) -> Future<T,E> {
     let promise = Promise<T,E>()
-    promise.complete(Result.success(value))
+    promise.complete(Either<E,T>.Right(value))
     return promise.future
 }
 
 /// 'unfulfilled' does the same with an error
 public func unfulfilled <T,E> (error: E) -> Future<T,E> {
     let promise = Promise<T,E>()
-    promise.complete(Result.failure(error))
+    promise.complete(Either.Left(error))
     return promise.future
 }

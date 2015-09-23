@@ -1,24 +1,23 @@
-/// A 'Future' holds a result: Result<T,E>? that can be, eventually, available at a certain time
+/// A 'Future' holds a result: Either<E,T>? that can be, eventually, available at a certain time
 /// Once the Future is completed, its value can't change any further
-/// The Future state could be 'not completed', thus result == nil, or 'completed', thus result != nil and can be .Success or .Failure
+/// The Future state could be 'not completed', thus result == nil, or 'completed', thus result != nil and can be .Right or .Left
 /// Various callback methods can inform client that a Future is in state 'completed'
 
 import Foundation
-import Result
 import Queue
-import Elements
+import Swiftz
 
 ///MARK: - basic definitions
 final public class Future<T,E> {
     
     ///  'result' is an exposed, non-mutable, computed property that refers to the invisible, private var result_internal; this construct is necessary because 'result' should be able to mutate over time, but shouldn't be mutated by clients
-    private var result_internal: Result<T,E>? = nil
-    public var result: Result<T,E>? {
+    private var result_internal: Either<E,T>? = nil
+    public var result: Either<E,T>? {
         return result_internal
     }
     
     /// useful typealias to represent a generic task that returns a Result
-    public typealias Task = () -> Result<T,E>
+    public typealias Task = () -> Either<E,T>
     
     /// the designated init method accepts a Task, and a Queue to execute the task
     public init(queue: Queue, _ task: Task?) {
@@ -49,7 +48,7 @@ final public class Future<T,E> {
     }
     
     /// some typealiases to conveniently define the various kinds of callbacks
-    public typealias CompletionCallback = Result<T,E> -> ()
+    public typealias CompletionCallback = Either<E,T> -> ()
     public typealias SuccessCallback = T -> ()
     public typealias FailureCallback = E -> ()
     
@@ -91,11 +90,11 @@ final public class Future<T,E> {
         return self
     }
     
-    /// the 'onSuccess' and 'onFailure' methods are convenience methods that call the 'onComplete' method with a CompletionCallback that actually calls the input callback exclusively if Result is respectively .Success or .Failure
+    /// the 'onSuccess' and 'onFailure' methods are convenience methods that call the 'onComplete' method with a CompletionCallback that actually calls the input callback exclusively if Result is respectively .Right or .Left
     public func onSuccess(callback: SuccessCallback) -> Future {
         onComplete { result in
             switch result {
-            case .Success(let value):
+            case .Right(let value):
                 callback(value)
             default:
                 break
@@ -106,7 +105,7 @@ final public class Future<T,E> {
     public func onFailure(callback: FailureCallback) -> Future {
         onComplete { result in
             switch result {
-            case .Failure(let value):
+            case .Left(let value):
                 callback(value)
             default:
                 break
@@ -120,7 +119,7 @@ extension Future {
     /// the 'complete' method completes the future by assigning a value to 'result' and then running callbacks
     /// the method returns a Bool because the future will be completed excusively if its state is 'not completed' (that is, self.result_internal == nil)
     /// the method is internal: a Future provider should use the Promise interface to complete a Future
-    func complete(result: Result<T,E>) -> Bool {
+    func complete(result: Either<E,T>) -> Bool {
         if isCompleted {
             return false
         }
@@ -138,10 +137,10 @@ extension Future {
         let newFuture = Future<U,E>()
         onComplete { result in
             switch result {
-            case .Success(let value):
-                newFuture.complete(Result.success(change(value)))
-            case .Failure(let error):
-                newFuture.complete(Result.failure(error))
+            case .Right(let value):
+                newFuture.complete(Either.Right(change(value)))
+            case .Left(let error):
+                newFuture.complete(Either.Left(error))
             }
         }
         return newFuture
@@ -151,10 +150,10 @@ extension Future {
         let newFuture = Future<U,E>()
         onComplete { result in
             switch result {
-            case .Success(let value):
+            case .Right(let value):
                 change(value).onComplete { newFuture.complete($0) }
-            case .Failure(let error):
-                newFuture.complete(Result.failure(error))
+            case .Left(let error):
+                newFuture.complete(Either.Left(error))
             }
         }
         return newFuture
