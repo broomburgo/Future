@@ -130,13 +130,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		381494201BB2B60E0066BEC2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		381494211BB2B6190066BEC2 /* Projects */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				381494211BB2B6190066BEC2 /* Projects */,
-				381494201BB2B60E0066BEC2 /* Frameworks */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
