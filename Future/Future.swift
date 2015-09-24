@@ -13,7 +13,7 @@ public enum FutureState<E,T>
   case Done(Either<E,T>)
 }
 
-///MARK: - basic definitions
+//MARK: - basic definitions
 final public class Future<E,T>
 {
   /// 'state' is not exposed: clients should communicate with a Future with onComplete, onSuccess and onFailure methods;
@@ -177,7 +177,7 @@ extension Future
   }
 }
 
-///MARK: - 'Applicative' and 'Monad' definitions
+//MARK: - 'Applicative' and 'Monad' definitions
 
 public func pure <E,A> (value: A) -> Future<E,A>
 {
